@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PaintSwatch.iml" filepath="$PROJECT_DIR$/PaintSwatch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Paint-Swatch.iml" filepath="$PROJECT_DIR$/Paint-Swatch.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
