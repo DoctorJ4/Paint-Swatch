@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_swatch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.developer.paintswatch.ActivitySwatch">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:text="255"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/APlus"
+            android:id="@+id/ATextView"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="48dp"
+            style="@style/OverlayText"
+            android:layout_toLeftOf="@+id/RMinus"
+            android:layout_alignLeft="@+id/AMinus"
+            android:layout_alignStart="@+id/AMinus" />
+        <TextView
+            android:text="255"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/RPlus"
+            android:id="@+id/RTextView"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="120dp"
+            tools:layout_editor_absoluteY="48dp"
+            style="@style/OverlayText"
+            android:textColor="@android:color/holo_red_light"
+
+            android:layout_toLeftOf="@+id/GMinus"
+            android:layout_alignLeft="@+id/RMinus"
+            android:layout_alignStart="@+id/RMinus" />
+
+        <TextView
+            android:text="255"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/RMinus"
+            android:id="@+id/GTextView"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="208dp"
+            tools:layout_editor_absoluteY="48dp"
+            android:layout_alignRight="@+id/GMinus"
+            android:layout_alignEnd="@+id/GMinus"
+            style="@style/OverlayText"
+            android:textColor="@android:color/holo_blue_light"
+            android:layout_alignLeft="@+id/GMinus"
+            android:layout_alignStart="@+id/GMinus" />
+
+        <TextView
+            android:text="255"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/GMinus"
+            android:id="@+id/BTextView"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="296dp"
+            tools:layout_editor_absoluteY="48dp"
+            android:layout_below="@+id/GPlus"
+            android:layout_alignRight="@+id/BMinus"
+            android:layout_alignEnd="@+id/BMinus"
+            style="@style/OverlayText"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_alignLeft="@+id/BPlus"
+            android:layout_alignStart="@+id/BPlus" />
+
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/BPlus"
+            tools:layout_editor_absoluteX="296dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:background="@android:color/transparent"
+            style="@style/OverlayText"
+            android:onClick="changeColor"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/BMinus"
+            tools:layout_editor_absoluteX="296dp"
+            tools:layout_editor_absoluteY="62dp"
+            android:background="@android:color/transparent"
+            style="@style/OverlayText"
+            android:onClick="changeColor"
+            android:layout_below="@+id/BTextView"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/GPlus"
+            tools:layout_editor_absoluteX="208dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:background="@android:color/transparent"
+            style="@style/OverlayText"
+            android:onClick="changeColor"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/GTextView"
+            android:layout_alignStart="@+id/GTextView" />
+
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/GMinus"
+            tools:layout_editor_absoluteX="208dp"
+            tools:layout_editor_absoluteY="62dp"
+            android:background="@android:color/transparent"
+            style="@style/OverlayText"
+            android:onClick="changeColor"
+            android:layout_below="@+id/GTextView"
+            android:layout_toLeftOf="@+id/BTextView"
+            android:layout_toStartOf="@+id/BTextView" />
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/APlus"
+
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="0dp"
+            style="@style/OverlayText"
+            android:background="@android:color/transparent"
+            android:onClick="changeColor"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/APlus"
+            android:layout_toStartOf="@+id/RPlus" />
+
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AMinus"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="62dp"
+            android:background="@android:color/transparent"
+            style="@style/OverlayText"
+            android:onClick="changeColor"
+            android:layout_below="@+id/ATextView"
+            android:layout_alignLeft="@+id/APlus"
+            android:layout_alignStart="@+id/APlus" />
+        <Button
+            android:text="+"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RPlus"
+
+            tools:layout_editor_absoluteX="120dp"
+            tools:layout_editor_absoluteY="0dp"
+            style="@style/OverlayText"
+            android:background="@android:color/transparent"
+            android:onClick="changeColor"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/GPlus"
+            android:layout_toStartOf="@+id/GPlus" />
+
+        <Button
+            android:text="-"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RMinus"
+            android:textAlignment="center"
+            tools:layout_editor_absoluteX="120dp"
+            tools:layout_editor_absoluteY="62dp"
+            android:background="@android:color/transparent"
+            style="@style/OverlayText"
+            android:onClick="changeColor"
+            android:layout_below="@+id/RTextView"
+            android:layout_alignLeft="@+id/RPlus"
+            android:layout_alignStart="@+id/RPlus" />
+    </RelativeLayout>
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        style="@style/OverlayText"
+        android:id="@+id/toggleButton"
+        android:onClick="hideButtons"
+
+        android:background="@android:color/transparent"
+        app:layout_constraintLeft_toLeftOf="@+id/activity_swatch"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_swatch" />
+
+</android.support.constraint.ConstraintLayout>
