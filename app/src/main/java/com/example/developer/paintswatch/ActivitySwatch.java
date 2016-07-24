@@ -4,20 +4,28 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
+import java.sql.Struct;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ActivitySwatch extends AppCompatActivity {
     private final int max = 255;
     private final int min = 0;
+    private final int presetMax = 25;
+    private final int presetMin = 0;
     private EditText Rview;
     private EditText Gview;
     private EditText Bview;
     private EditText Aview;
+    private EditText PresetView;
     private Button Bplus;
     private Button Bminus;
     private Button Rplus;
@@ -26,10 +34,12 @@ public class ActivitySwatch extends AppCompatActivity {
     private Button Gminus;
     private Button Aplus;
     private Button Aminus;
+    private Button presetPlus;
+    private Button presetMinus;
     private ToggleButton hideToggle;
     private SharedPreferences preferenceSettings;
     private SharedPreferences.Editor preferenceEditor;
-    private static final int PREFRENCE_MODE_PRIVATE = 0;
+    private static final int PREFERENCE_MODE_PRIVATE = 0;
     private static final String ALPHA = "A";
     private static final String RED = "R";
     private static final String GREEN = "G";
@@ -39,17 +49,14 @@ public class ActivitySwatch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swatch);
 
-        preferenceSettings = getPreferences(PREFRENCE_MODE_PRIVATE);
+        preferenceSettings = getPreferences(PREFERENCE_MODE_PRIVATE);
         preferenceEditor = preferenceSettings.edit();
 
         Rview = (EditText) findViewById(R.id.RTextView);
         Gview = (EditText) findViewById(R.id.GTextView);
         Bview = (EditText) findViewById(R.id.BTextView);
         Aview = (EditText) findViewById(R.id.ATextView);
-        /*Rview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});
-        Gview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});
-        Bview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});
-        Aview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});*/
+        PresetView = (EditText) findViewById(R.id.presetView);
 
         Bplus = (Button) findViewById(R.id.BPlus);
         Bminus = (Button) findViewById(R.id.BMinus);
@@ -59,13 +66,16 @@ public class ActivitySwatch extends AppCompatActivity {
         Gminus = (Button) findViewById(R.id.GMinus);
         Aplus = (Button) findViewById(R.id.APlus);
         Aminus = (Button) findViewById(R.id.AMinus);
+        presetPlus = (Button) findViewById((R.id.presetPlus));
+        presetMinus = (Button) findViewById((R.id.presetMinus));
         hideToggle = (ToggleButton) findViewById(R.id.toggleButton);
-        loadAllValues();
+        //loadAllValues();
 
         setTextChangeListener(Aview);
         setTextChangeListener(Rview);
         setTextChangeListener(Gview);
         setTextChangeListener(Bview);
+        setTextChangeListenerPreset(PresetView);
         setLongListener(Bplus);
         setLongListener(Bminus);
         setLongListener(Rplus);
@@ -74,9 +84,11 @@ public class ActivitySwatch extends AppCompatActivity {
         setLongListener(Gminus);
         setLongListener(Aplus);
         setLongListener(Aminus);
+        setLongListener(presetPlus);
+        setLongListener(presetMinus);
 
         checkToggle();
-        changeColor(Rview);
+        changePresetColor();
     }
 
     @Override
@@ -105,27 +117,33 @@ public class ActivitySwatch extends AppCompatActivity {
 
     private void saveAllValues()
     {
-        preferenceEditor.putString(ALPHA,Aview.getText().toString());
-        preferenceEditor.putString(RED,Rview.getText().toString());
-        preferenceEditor.putString(GREEN,Gview.getText().toString());
-        preferenceEditor.putString(BLUE,Bview.getText().toString());
+        String presetNum = PresetView.getText().toString();
+        preferenceEditor.putString(presetNum,PresetView.getText().toString());
+        preferenceEditor.putString(ALPHA + presetNum,Aview.getText().toString());
+        preferenceEditor.putString(RED + presetNum,Rview.getText().toString());
+        preferenceEditor.putString(GREEN + presetNum,Gview.getText().toString());
+        preferenceEditor.putString(BLUE + presetNum,Bview.getText().toString());
         preferenceEditor.commit();
     }
 
     private void loadAllValues()
     {
-        Aview.setText(preferenceSettings.getString(ALPHA, max + ""));
-        Rview.setText(preferenceSettings.getString(RED, max + ""));
-        Gview.setText(preferenceSettings.getString(GREEN, max + ""));
-        Bview.setText(preferenceSettings.getString(BLUE, max + ""));
+        String presetNum = PresetView.getText().toString();
+        Aview.setText(preferenceSettings.getString(ALPHA + presetNum, max + ""));
+        Rview.setText(preferenceSettings.getString(RED + presetNum, max + ""));
+        Gview.setText(preferenceSettings.getString(GREEN + presetNum, max + ""));
+        Bview.setText(preferenceSettings.getString(BLUE + presetNum, max + ""));
     }
 
-    private void setLongListener(View view)
+    private void setLongListener(Button view)
     {
         view.setOnTouchListener(new RepeatListener(400, 10, new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeColor(view);
+                if (view.getId() == R.id.presetPlus || view.getId() == R.id.presetMinus)
+                    changePresetColor(view);
+                else
+                    changeColor(view);
             }
         }));
     }
@@ -136,6 +154,35 @@ public class ActivitySwatch extends AppCompatActivity {
             setAllVisibility(View.GONE);
         else
             setAllVisibility(View.VISIBLE);
+    }
+
+    private void setTextChangeListenerPreset(final EditText eText)
+    {
+        eText.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+                if(checkPresetString(eText.getText().toString())) {
+                    loadAllValues();
+                    changeColor();
+                }
+                else
+                {
+                    fixColorPresetValue(eText);
+                    loadAllValues();
+                    changeColor();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+                //saveAllValues();
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                //Field1.setText("");
+            }
+        });
     }
 
     private void setTextChangeListener(final EditText eText)
@@ -166,6 +213,11 @@ public class ActivitySwatch extends AppCompatActivity {
     private void fixColorValue(EditText eText)
     {
         eText.setText(safeString(eText.getText().toString()));
+    }
+
+    private void fixColorPresetValue(EditText eText)
+    {
+        eText.setText(safePresetString(eText.getText().toString()));
     }
 
     private void changeColor()
@@ -223,6 +275,50 @@ public class ActivitySwatch extends AppCompatActivity {
 
     }
 
+    private void changePresetColor()
+    {
+        loadAllValues();
+        changeColor();
+    }
+
+    public void changePresetColor(View view)
+    {
+        int newValue;
+        saveAllValues();
+
+        switch (view.getId()) {
+            case R.id.presetPlus:
+                newValue = (Integer.parseInt(PresetView.getText().toString()) + 1);
+                PresetView.setText(safePresetNewValue(newValue) + "");
+                break;
+            case R.id.presetMinus:
+                newValue = (Integer.parseInt(PresetView.getText().toString()) - 1);
+                PresetView.setText(safePresetNewValue(newValue) + "");
+                break;
+        }
+
+        loadAllValues();
+        changeColor();
+    }
+
+    private boolean checkPresetString(String s)
+    {
+        try {
+            if (s.isEmpty())
+                return false;
+            return checkPresetInt(Integer.valueOf(s));
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    private boolean checkPresetInt(int val)
+    {
+        if(val > presetMax || val < presetMin)
+            return false;
+        return true;
+    }
+
     private boolean checkString(String s)
     {
         try {
@@ -233,6 +329,8 @@ public class ActivitySwatch extends AppCompatActivity {
             return false;
         }
     }
+
+
 
     private boolean checkInt(int val)
     {
@@ -257,6 +355,22 @@ public class ActivitySwatch extends AppCompatActivity {
         return val;
     }
 
+    private String safePresetString(String s)
+    {
+        if(s.isEmpty())
+            return (presetMin + "");
+        return Integer.toString(safePresetNewValue(Integer.valueOf(s)));
+    }
+
+    private int safePresetNewValue(int val)
+    {
+        if(val > presetMax)
+            val = presetMax;
+        else if (val < presetMin)
+            val = presetMin;
+        return val;
+    }
+
     public void hideButtons(View view)
     {
         if(Rview.getVisibility() == View.VISIBLE)
@@ -271,6 +385,7 @@ public class ActivitySwatch extends AppCompatActivity {
         Gview.setVisibility(vis);
         Bview.setVisibility(vis);
         Aview.setVisibility(vis);
+        PresetView.setVisibility(vis);
         Bplus.setVisibility(vis);
         Bminus.setVisibility(vis);
         Rplus.setVisibility(vis);
@@ -279,5 +394,8 @@ public class ActivitySwatch extends AppCompatActivity {
         Gminus.setVisibility(vis);
         Aplus.setVisibility(vis);
         Aminus.setVisibility(vis);
+        presetPlus.setVisibility(vis);
+        presetMinus.setVisibility(vis);
     }
 }
+
