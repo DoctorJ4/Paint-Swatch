@@ -64,12 +64,15 @@ public class ActivitySwatch extends AppCompatActivity {
         setLongListener(Aplus);
         setLongListener(Aminus);
 
-        if(hideToggle.getText().toString().equals("OFF"))
-            setAllVisibility(View.GONE);
-        else
-            setAllVisibility(View.VISIBLE);
+        checkToggle();
 
          changeColor(Rview);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkToggle();
     }
 
     private void setLongListener(View view)
@@ -80,6 +83,14 @@ public class ActivitySwatch extends AppCompatActivity {
                 changeColor(view);
             }
         }));
+    }
+
+    private void checkToggle()
+    {
+        if(hideToggle.getText().toString().equals("OFF"))
+            setAllVisibility(View.GONE);
+        else
+            setAllVisibility(View.VISIBLE);
     }
 
     private void setTextChangeListener(final EditText eText)

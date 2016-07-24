@@ -12,69 +12,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-23.4.0_58127f327288d1e6004fb8df0a991f50ae4fa0af\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_af82598a4f509962bb290899312311e1bf310300\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="83b9d1fd6dd3791184d6b60d3a130a993e2987e3">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.1.0_da6037910a54bf5551523884b441ad455b50bd76\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.4.0_2ce3adc0e44c9286bd3990e48150742019ae1768\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="14482ebf4407748092e19ef6168deae29568ab66">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_4b041bf7d5604dceb4fa174c7b6c6b9649a03963\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha4\constraint-layout-solver-1.0.0-alpha4.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="a882fef6a6b9e3efbb0b6b001895a5fc7c35b391">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha4_1477820d782db00982d71d01cedf9b54faf053bc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support.constraint\constraint-layout\1.0.0-alpha4\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="affe29a90a2a709bfd2b8d6411aa99c05a2be96f">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support.constraint-constraint-layout-1.0.0-alpha4_e978edd8d9bfa9b39935ec05d16a9711e7763eb4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="false"
@@ -88,7 +25,7 @@
         jumboMode="true"
         optimize="false"
         revision="23.0.2"
-        sha1="8fbeb35b23ffd6c3a8404c0e896919b3e496e55c">
+        sha1="e17a47d908614ee30471f48dfb4702a43b1313e3">
         <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d0a555ebcaaa75c9dafaef027de17f8e7e7a54c5\classes.dex" />
     </item>
     <item
@@ -98,7 +35,7 @@
         optimize="false"
         revision="23.0.2"
         sha1="8a23146e1a8c7cb4758e3d3f62449213f1e51f67">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.0_b3c5ea23463642d3607f2a225ab6fa30547a2bc8\classes.dex" />
+        <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.0_b3c5ea23463642d3607f2a225ab6fa30547a2bc8\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -120,30 +57,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.4.0_ff9334208e04e331e7c3928b159d06ea337eb1be\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
         jumboMode="true"
         optimize="false"
         revision="23.0.2"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
         <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_d6306c644cc1e8bc121f084cb69220d4c8e15115\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-23.4.0_db86c3b71dfca6d287cdd2ae48f7c5ab75fdd5b8\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -165,21 +84,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.2"
-        sha1="53862097c7006ba75871babf762ceb9f9c601c44">
-        <dex dex="C:\Users\Developer\Documents\GitHub\PaintSwatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_a8a58e49d8b3bc7ead4288a927a5559f77a4a830\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="false"
         revision="23.0.2"
-        sha1="21262211adb5e0d8ec6f3d2b85b0418921a5f7b6">
+        sha1="a2285152b4466d25e632ced6951e5668cb290c5c">
         <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_74a19acc1764660f6f303ebb2169298a8ef28713\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Developer\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha4\constraint-layout-solver-1.0.0-alpha4.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.2"
+        sha1="a882fef6a6b9e3efbb0b6b001895a5fc7c35b391">
+        <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.0-alpha4_1477820d782db00982d71d01cedf9b54faf053bc\classes.dex" />
     </item>
 
 </items>
