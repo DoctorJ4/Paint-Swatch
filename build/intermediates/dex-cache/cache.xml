@@ -25,7 +25,7 @@
         jumboMode="true"
         optimize="false"
         revision="23.0.2"
-        sha1="ec6ab420717ac80b31f5aaa7b83a393b2f10ec23">
+        sha1="fd92e36ceb0d0f1d8545159181a2bbb9a538d375">
         <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d0a555ebcaaa75c9dafaef027de17f8e7e7a54c5\classes.dex" />
     </item>
     <item
@@ -88,7 +88,7 @@
         jumboMode="true"
         optimize="false"
         revision="23.0.2"
-        sha1="a398053013af4267f7e888fd174db628d47326ea">
+        sha1="3dfff039fa99b55cb4a9add765150844258e2125">
         <dex dex="C:\Users\Developer\Documents\GitHub\Paint-Swatch\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_74a19acc1764660f6f303ebb2169298a8ef28713\classes.dex" />
     </item>
     <item

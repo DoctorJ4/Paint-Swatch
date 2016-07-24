@@ -91,6 +91,18 @@ public class ActivitySwatch extends AppCompatActivity {
         super.onDestroy();
     }
 
+    @Override
+    protected void onStop() {
+        saveAllValues();
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        saveAllValues();
+        super.onPause();
+    }
+
     private void saveAllValues()
     {
         preferenceEditor.putString(ALPHA,Aview.getText().toString());
