@@ -1,4 +1,5 @@
 package com.example.developer.paintswatch;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 public class ActivitySwatch extends AppCompatActivity {
@@ -27,19 +27,29 @@ public class ActivitySwatch extends AppCompatActivity {
     private Button Aplus;
     private Button Aminus;
     private ToggleButton hideToggle;
+    private SharedPreferences preferenceSettings;
+    private SharedPreferences.Editor preferenceEditor;
+    private static final int PREFRENCE_MODE_PRIVATE = 0;
+    private static final String ALPHA = "A";
+    private static final String RED = "R";
+    private static final String GREEN = "G";
+    private static final String BLUE = "B";
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swatch);
+
+        preferenceSettings = getPreferences(PREFRENCE_MODE_PRIVATE);
+        preferenceEditor = preferenceSettings.edit();
+
         Rview = (EditText) findViewById(R.id.RTextView);
         Gview = (EditText) findViewById(R.id.GTextView);
         Bview = (EditText) findViewById(R.id.BTextView);
         Aview = (EditText) findViewById(R.id.ATextView);
-        Rview.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "255")});
-        Gview.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "255")});
-        Bview.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "255")});
-        Aview.setFilters(new InputFilter[]{ new InputFilterMinMax("0", "255")});
+        /*Rview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});
+        Gview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});
+        Bview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});
+        Aview.setFilters(new InputFilter[]{ new InputFilterMinMax(min, max)});*/
 
         Bplus = (Button) findViewById(R.id.BPlus);
         Bminus = (Button) findViewById(R.id.BMinus);
@@ -50,6 +60,7 @@ public class ActivitySwatch extends AppCompatActivity {
         Aplus = (Button) findViewById(R.id.APlus);
         Aminus = (Button) findViewById(R.id.AMinus);
         hideToggle = (ToggleButton) findViewById(R.id.toggleButton);
+        loadAllValues();
 
         setTextChangeListener(Aview);
         setTextChangeListener(Rview);
@@ -65,14 +76,36 @@ public class ActivitySwatch extends AppCompatActivity {
         setLongListener(Aminus);
 
         checkToggle();
-
-         changeColor(Rview);
+        changeColor(Rview);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         checkToggle();
+    }
+
+    @Override
+    protected void onDestroy() {
+        saveAllValues();
+        super.onDestroy();
+    }
+
+    private void saveAllValues()
+    {
+        preferenceEditor.putString(ALPHA,Aview.getText().toString());
+        preferenceEditor.putString(RED,Rview.getText().toString());
+        preferenceEditor.putString(GREEN,Gview.getText().toString());
+        preferenceEditor.putString(BLUE,Bview.getText().toString());
+        preferenceEditor.commit();
+    }
+
+    private void loadAllValues()
+    {
+        Aview.setText(preferenceSettings.getString(ALPHA, max + ""));
+        Rview.setText(preferenceSettings.getString(RED, max + ""));
+        Gview.setText(preferenceSettings.getString(GREEN, max + ""));
+        Bview.setText(preferenceSettings.getString(BLUE, max + ""));
     }
 
     private void setLongListener(View view)
@@ -98,8 +131,13 @@ public class ActivitySwatch extends AppCompatActivity {
         eText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                if(eText.getText().toString().isEmpty() == false)
-                    changeColor(eText);
+                if(checkString(eText.getText().toString()))
+                    changeColor();
+                else
+                {
+                    fixColorValue(eText);
+                    changeColor();
+                }
             }
 
             public void beforeTextChanged(CharSequence s, int start,
@@ -111,6 +149,24 @@ public class ActivitySwatch extends AppCompatActivity {
                 //Field1.setText("");
             }
         });
+    }
+
+    private void fixColorValue(EditText eText)
+    {
+        eText.setText(safeString(eText.getText().toString()));
+    }
+
+    private void changeColor()
+    {
+        findViewById(R.id.activity_swatch).
+                setBackgroundColor(
+                        Color.argb(
+                                Integer.parseInt(safeString(Aview.getText().toString())),
+                                Integer.parseInt(safeString(Rview.getText().toString())),
+                                Integer.parseInt(safeString(Gview.getText().toString())),
+                                Integer.parseInt(safeString(Bview.getText().toString()))
+                        ));
+
     }
 
     public void changeColor(View view)
@@ -151,22 +207,33 @@ public class ActivitySwatch extends AppCompatActivity {
                 break;
         }
 
-            findViewById(R.id.activity_swatch).
-                    setBackgroundColor(
-                            Color.argb(
-                                    Integer.parseInt(safeInt(Aview.getText().toString())),
-                                    Integer.parseInt(safeInt(Rview.getText().toString())),
-                                    Integer.parseInt(safeInt(Gview.getText().toString())),
-                                    Integer.parseInt(safeInt(Bview.getText().toString()))
-                            ));
+        changeColor();
 
     }
 
-    private String safeInt(String s)
+    private boolean checkString(String s)
+    {
+        try {
+            if (s.isEmpty())
+                return false;
+            return checkInt(Integer.valueOf(s));
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    private boolean checkInt(int val)
+    {
+        if(val > max || val < min)
+            return false;
+        return true;
+    }
+
+    private String safeString(String s)
     {
         if(s.isEmpty())
-            s = "0";
-        return s;
+            return (min + "");
+        return Integer.toString(safeNewValue(Integer.valueOf(s)));
     }
 
     private int safeNewValue(int val)
