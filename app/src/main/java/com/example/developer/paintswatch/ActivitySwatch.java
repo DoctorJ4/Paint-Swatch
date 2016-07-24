@@ -44,6 +44,7 @@ public class ActivitySwatch extends AppCompatActivity {
     private static final String RED = "R";
     private static final String GREEN = "G";
     private static final String BLUE = "B";
+    private static final String CurrentPreset = "CurrentPreset";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +89,7 @@ public class ActivitySwatch extends AppCompatActivity {
         setLongListener(presetMinus);
 
         checkToggle();
+        initialLoadAllValues();
         changePresetColor();
     }
 
@@ -95,6 +97,8 @@ public class ActivitySwatch extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         checkToggle();
+        initialLoadAllValues();
+        changePresetColor();
     }
 
     @Override
@@ -118,7 +122,8 @@ public class ActivitySwatch extends AppCompatActivity {
     private void saveAllValues()
     {
         String presetNum = PresetView.getText().toString();
-        preferenceEditor.putString(presetNum,PresetView.getText().toString());
+        preferenceEditor.putString(CurrentPreset, presetNum);
+        preferenceEditor.putString(presetNum,presetNum);
         preferenceEditor.putString(ALPHA + presetNum,Aview.getText().toString());
         preferenceEditor.putString(RED + presetNum,Rview.getText().toString());
         preferenceEditor.putString(GREEN + presetNum,Gview.getText().toString());
@@ -134,6 +139,16 @@ public class ActivitySwatch extends AppCompatActivity {
         Gview.setText(preferenceSettings.getString(GREEN + presetNum, max + ""));
         Bview.setText(preferenceSettings.getString(BLUE + presetNum, max + ""));
     }
+    private void initialLoadAllValues()
+    {
+        String presetNum = preferenceSettings.getString(CurrentPreset, presetMin + "");
+        PresetView.setText(presetNum);
+        Aview.setText(preferenceSettings.getString(ALPHA + presetNum, max + ""));
+        Rview.setText(preferenceSettings.getString(RED + presetNum, max + ""));
+        Gview.setText(preferenceSettings.getString(GREEN + presetNum, max + ""));
+        Bview.setText(preferenceSettings.getString(BLUE + presetNum, max + ""));
+    }
+
 
     private void setLongListener(Button view)
     {
